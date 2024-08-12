@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+</head>
+<body>
+    <form onsubmit="return false;">
+        <center>
+            <h1>BMI Calculator</h1>
+            <table>
+                <tr>
+                    <td><label>Weight:</label></td>
+                    <td><input type="text" id="weightInput"></td>
+                    <td>  
+                        <select name="weightUnit" id="weightUnit">
+                            <option value="kgs">in kgs</option>
+                            <option value="pounds">in pounds</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Height:</label></td>
+                    <td><input type="text" id="heightInput"></td>
+                    <td>  
+                        <select name="heightUnit" id="heightUnit">
+                            <option value="cms">in cms</option>
+                            <option value="inches">in inches</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2">
+                        <input type="reset" value="Reset">
+                        <input type="submit" value="Calculate" onclick="calculateBMI()">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="result">Result: </label></td>
+                    <td><input type="text" readonly name="result" id="result"></td>
+                </tr>
+                <tr>
+                    <td><label for="opinion">Opinion:</label></td>
+                    <td><input type="text" readonly name="opinion" id="opinion"></td>
+                </tr>
+            </table>
+        </center>
+    </form>
+
+    <script>
+        function calculateBMI() {
+
+            var weight = parseFloat(document.getElementById('weightInput').value);
+            var height = parseFloat(document.getElementById('heightInput').value);
+
+
+            var weightUnit = document.getElementById('weightUnit').value;
+            var heightUnit = document.getElementById('heightUnit').value;
+
+
+            if (weightUnit === 'pounds') {
+                weight = weight * 0.453592;
+            }
+
+
+            if (heightUnit === 'cms') {
+                height = height / 100;
+            } else if (heightUnit === 'inches') {
+                height = height * 0.0254;
+            }
+
+            var bmi = weight / (height * height);
+            bmi = bmi.toFixed(2);
+
+
+            document.getElementById('result').value = bmi;
+
+ 
+            var opinion = '';
+            if (bmi > 10 && bm < 18.5) {
+                opinion = 'You are a underweighted person.';
+            } else if (bmi > 10) {
+                opinion = 'Please be dead.';
+            }else if (bmi >= 18.5 && bmi < 24.9) {
+                opinion = 'You are a Normal weighted person';
+            } else if (bmi >= 25 && bmi < 29.9) {
+                opinion = 'You are a Overweighted person';
+            }else if (bmi >=29.9 && bmi < 35.0) {
+                opinion = 'You are a obese person';
+            }else if (bmi > 35.0) {
+                opinion = 'Please be dead';
+            }
+
+     
+            document.getElementById('opinion').value = opinion;
+        }
+    </script>
+</body>
+</html>
