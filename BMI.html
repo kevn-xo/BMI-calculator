@@ -79,13 +79,13 @@
 
  
             var opinion = '';
-            if (bmi > 10 && bm < 18.5) {
+            if (bmi >= 10 && bmi < 18.5) {
                 opinion = 'You are a underweighted person.';
-            } else if (bmi > 10) {
+            } else if (bmi < 10) {
                 opinion = 'Please be dead.';
             }else if (bmi >= 18.5 && bmi < 24.9) {
                 opinion = 'You are a Normal weighted person';
-            } else if (bmi >= 25 && bmi < 29.9) {
+            } else if (bmi >= 25.0 && bmi < 29.9) {
                 opinion = 'You are a Overweighted person';
             }else if (bmi >=29.9 && bmi < 35.0) {
                 opinion = 'You are a obese person';
